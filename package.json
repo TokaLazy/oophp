@@ -1,0 +1,27 @@
+{
+  "name": "oophp",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "repository": "git@github.com:TokaLazy/oophp.git",
+  "author": "TokaLazy <cl.steeve@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "gulp",
+    "dev": "gulp",
+    "prod": "gulp prod"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.5",
+    "css-mqpacker": "^6.0.1",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-livereload": "^3.8.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "node.normalize.scss": "^3.0.3",
+    "run-sequence": "^2.2.0"
+  }
+}

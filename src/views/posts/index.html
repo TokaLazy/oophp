@@ -1,0 +1,9 @@
+<?php if (count($posts)) : ?>
+<ul>
+  <?php foreach ($posts as $post) : ?>
+  <li>
+    <h2><a href="/posts/article/<?=$post->id?>"><?=$post->title?> (<strong><?=$post->author?></strong>)</a></h2>
+  </li>
+  <?php endforeach; ?>
+</ul>
+<?php endif; ?>
