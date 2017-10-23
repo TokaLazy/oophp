@@ -5,7 +5,8 @@ $prod = isset($_SERVER["HTTP_X_REAL_IP"]) && $_SERVER["HTTP_X_REAL_IP"] == $_SER
 // ENVIRONMENT
 define('PROD', $prod);
 
-define('CONF', './config');
+define('CONF', './config/');
+define('INC', './include/');
 
 // ASSETS path
 define('ASSET', PROD ? '/assets' : '/resources');
@@ -14,16 +15,19 @@ define('ASSET', PROD ? '/assets' : '/resources');
 define('CSS', PROD ? ASSET.'/css' : ASSET.'/scss');
 
 // IMAGES path
-define('IMG', ASSET.'/images');
+define('IMG', ASSET.'/img/');
 
 // JAVASCRIPTS path
 define('JS', ASSET.'/js');
 
 // CONTROLLER path
-define('CONTROLLER', './controllers');
+define('CONTROLLER', './controllers/');
 
 // MODEL path
-define('MODEL', './models');
+define('MODEL', './models/');
 
 // VIEWS path
-define('VIEW', './views');
+define('VIEW', './views/');
+
+
+require_once(INC.'functions.php');

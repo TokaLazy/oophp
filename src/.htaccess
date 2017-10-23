@@ -1,2 +1,2 @@
 RewriteEngine on
-RewriteRule    ^([\w_-]+)\/?(([\w_-]+)(\/(\d+))?\/?)?$    /?controller=$1&model=$3&id=$5
+RewriteRule    ^([\w_-]+)\/?(([\w_-]+)(\/(\d+))?\/?)?$    /?controller=$1&action=$3&id=$5

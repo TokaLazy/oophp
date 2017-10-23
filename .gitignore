@@ -1,2 +1,5 @@
 node_modules/
 public/
+*.map
+*.css
+script.js

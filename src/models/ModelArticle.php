@@ -1,6 +1,8 @@
 <?php
 
-class Post
+require_once(INC.'Connection.php');
+
+class Article
 {
     public $id;
     public $title;
@@ -22,23 +24,20 @@ class Post
         $list = [];
 
         foreach ($req->fetchAll() as $post) {
-            $list[] = new Post($post['id'], $post['title'], $post['message'], $post['author']);
+            $list[] = new Article($post['id'], $post['title'], $post['message'], $post['author']);
         }
 
         return $list;
     }
 
-    public static function select($id)
-    {
-        $id = intval($id);
-
+    public static function select($id) {
         $db = Db::getInstance();
         $req = $db->prepare("SELECT * FROM posts WHERE id = :id");
-        $req->bindValue(':id', PDO::PARAM_INT);
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
         $req->execute();
 
         $post = $req->fetch(PDO::FETCH_ASSOC);
 
-        return new Post($post['id'], $post['title'], $post['message'], $post['author']);
+        return new Article($post['id'], $post['title'], $post['message'], $post['author']);
     }
 }
