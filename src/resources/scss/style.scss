@@ -1,8 +1,12 @@
-@import './tools/variables';
-@import './tools/functions';
-@import './tools/mixins';
+@import 'tools/variables';
+@import 'tools/functions';
+@import 'tools/mixins';
 
 @import 'node_modules/node.normalize.scss/normalize';
-@import './scaffolding';
+@import 'scaffolding';
 
-@import './components/navigation';
+@import 'components/header';
+@import 'components/footer';
+@import 'components/fildariane';
+@import 'components/container';
+@import 'components/presentation';

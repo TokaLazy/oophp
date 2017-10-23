@@ -1,0 +1,12 @@
+<?php if (isset($presentation) && count($presentation)): ?>
+  <ul class="presentation">
+
+  <?php foreach ($presentation as $article): ?>
+    <li class="presentation__block">
+      <a class="presentation__link" href="<?=$article['url']?>" alt="Aller à la page <?=$article['title']?>"><?=$article['title']?></a>
+      <p class="presentation__text"><?=$article['message']?></p>
+    </li>
+  <?php endforeach; ?>
+
+  </ul>
+<?php endif; ?>

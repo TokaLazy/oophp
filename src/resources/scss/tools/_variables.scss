@@ -1,9 +1,16 @@
 $browser-context: 16px !default;
 
+// Breakpoints
 $mobile: 300;
 $tablet: 600;
 $laptop: 900;
 $desktop: 1200;
 $giant: 1500;
 
+// Colors
 $clr-link: #4169e1;
+
+// Fonts
+$font-major: Gadugi, Arial;
+$font-minor: Euphemia, cursive, sans-serif;
+$font-bonus: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
