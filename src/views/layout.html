@@ -77,6 +77,19 @@
   </header>
 
   <main class="container">
+
+    <?php if (isset($_SESSION['flash'])) : ?>
+    <ul class="alert">
+
+      <?php foreach ($_SESSION['flash'] as $color => $flash) : ?>
+        <?php foreach($flash as $message) : ?>
+        <li class="alert__message alert__message--<?=$color?>"><?=$message?></li>
+        <?php endforeach; ?>
+      <?php endforeach; ?>
+
+    </ul>
+    <?php endif; ?>
+
     <?php require_once(VIEW."$folder/$page.html"); ?>
   </main>
 
@@ -106,6 +119,8 @@
       Site du Savoir Tous droits reservés &copy; copyright "date('Y')"
     </div>
   </footer>
+
+  <script src="<?=JS?>/script.js"></script>
 </body>
 
 </html>

@@ -44,7 +44,7 @@ gulp.task('scss', _ => (
     .pipe(gulp.dest(pathScss))
 ))
 
-const jsScript = ['formulaire']
+const jsScript = ['alert']
 const jsFiles = jsScript.map(file => `${pathJs}/${file}.js`)
 
 gulp.task('js', _ => (
@@ -86,5 +86,5 @@ gulp.task('prod', _ => sequence('clean', ['copy', 'scss-prod', 'js-prod', 'img']
 
 gulp.task('default', ['scss', 'js'], _ => {
   gulp.watch(`${pathScss}/**/*.scss`, ['scss'])
-  gulp.watch(`${jsFiles}/*.js`, ['js'])
+  gulp.watch(jsFiles, ['js'])
 })

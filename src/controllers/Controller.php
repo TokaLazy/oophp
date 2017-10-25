@@ -28,7 +28,7 @@ abstract class Controller
                 $this->{$action}();
             }
         } else {
-            throw new Exception('ya une couille');
+            throw new Exception('Aucune méthode du nom de "'.$action.'" dans la class...');
         }
     }
 }

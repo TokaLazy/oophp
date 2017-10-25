@@ -9,8 +9,16 @@ $giant: 1500;
 
 // Colors
 $clr-link: #4169e1;
+$success: #4caf50;
+$danger: #f44336;
+$warning: #ffc107;
+$info: #03a9f4;
 
 // Fonts
 $font-major: Gadugi, Arial;
 $font-minor: Euphemia, cursive, sans-serif;
 $font-bonus: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+// Paths
+$img: '../img';
+$icon: $img + '/icons';
