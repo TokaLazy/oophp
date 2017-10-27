@@ -45,7 +45,7 @@ class RegisterController extends Controller
                     $member->setId(Member::getId($member)['id']);
 
                     if (PROD) {
-                        Member::sendEmail($member);
+                        $member->sendEmail("Cliquez ou copier le lien dans votre navigateur http://".$_SERVER['SERVER_NAME']."/register/confirm/".$this->id."/".$member->token);
 
                         Session::setFlash('success', 'Un e-mail de confirmation vous a été envoyé.');
                     } else {
