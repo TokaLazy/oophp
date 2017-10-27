@@ -1,8 +1,8 @@
 <?php
 
 require_once('Controller.php');
-require_once(MODEL.'ModelRegister.php');
-require_once(CONTROLLER.'Member.php');
+require_once(INC.'Session.php');
+require_once(MODEL.'ModelMember.php');
 require_once(CONTROLLER.'ValidForm.php');
 
 class RegisterController extends Controller
@@ -31,22 +31,27 @@ class RegisterController extends Controller
 
                 $member = Member::init($post);
 
-                if (Register::memberExist('pseudo', $member->pseudo())) {
+                if (Member::exist('pseudo', $member->pseudo())) {
                     $errors[] = "Votre pseudo est déjà pris, nous sommes désolé.";
                 }
 
-                if (Register::memberExist('email', $member->email())) {
+                if (Member::exist('email', $member->email())) {
                     $errors[] = "Votre adresse e-mail est déjà prise.";
                 }
 
                 if (!count($errors)) {
-                    Register::insert($member);
+                    Member::insert($member);
 
-                    $member->setId(Register::getId($member)['id']);
+                    $member->setId(Member::getId($member)['id']);
 
-                    Register::sendEmail($member);
+                    if (PROD) {
+                        Member::sendEmail($member);
 
-                    $_SESSION['flash']['success'][] = 'Un e-mail de confirmation vous a été envoyé.';
+                        Session::setFlash('success', 'Un e-mail de confirmation vous a été envoyé.');
+                    } else {
+                        Session::setFlash('info', "Petit lien pour confirmer l'inscription :<br>http://".$_SERVER['SERVER_NAME']."/register/confirm/".$member->id()."/".$member->token());
+                    }
+
                     redirect();
                 }
             }
@@ -57,15 +62,17 @@ class RegisterController extends Controller
 
     public function confirm()
     {
-        if (Register::memberExist('id', $_GET['id'])) {
-            if (!Register::tokenExist($_GET['id'], $_GET['token'])) {
-                $_SESSION['flash']['danger'][] = 'Votre token n\'est pas valide.';
+        if (Member::exist('id', $_GET['id'])) {
+            if (!Member::check('token', $_GET['token'], $_GET['id'])) {
+                Session::setFlash('danger', "Votre token n'est pas valide.");
             } else {
-                $_SESSION['flash']['success'][] = 'Votre compte est validé.<br>Bienvenue sur le Site du Savoir';
-                // NOTE Faire la connexion automatique ^^
+                $member = Member::connexion('id', $_GET['id']);
+                $member->setToken(null);
+                $member->update($member);
+                Session::setUser($member);
             }
         } else {
-            $_SESSION['flash']['danger'][] = 'Votre compte n\'existe pas valide.';
+            Session::setFlash('danger', "Votre compte n'existe pas.");
         }
 
         redirect();

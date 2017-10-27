@@ -31,24 +31,16 @@
         </div>
       </form>
 
-      <ul class="header__subscribe">
-        <li>
-          <a href="/register">S'inscrire</a>
-        </li>
-        <li>
-          <a href="/connexion">Se connecter</a>
-        </li>
-      </ul>
-
-      <!-- <ul class="header__member">
+      <?php if (isset($_SESSION['id'])) : ?>
+      <ul class="header__member">
         <li class="header__avatar">
-          <a href="../membre/voirmonprofil.php?id=<?=$id?>">
-            <img src="../images/avatars/<?=$avatar?>" alt="avatar">
+          <a href="../membre/voirmonprofil.php?id=<?=$_SESSION['id']?>">
+            <img src="<?=IMG?>avatar/<?=$_SESSION['avatar']?>" alt="avatar">
           </a>
           <div class="header__menu">
             <ul>
               <li>
-                <a href="../membre/editerprofil.php?id=<?=$id?>">Parametres</a>
+                <a href="../membre/editerprofil.php?id=<?=$_SESSION['id']?>">Parametres</a>
               </li>
               <li>
                 <a href="../membre/amis.php">Amis</a>
@@ -63,12 +55,22 @@
                 <a href="../membre/mescontenus.php">Mes Contenus</a>
               </li>
               <li>
-                <a href="../deconnexion.php">Se deconnecter</a>
+                <a href="/deconnexion">Se deconnecter</a>
               </li>
             </ul>
           </div>
         </li>
-      </ul> -->
+      </ul>
+      <?php else : ?>
+      <ul class="header__subscribe">
+        <li>
+          <a href="/register">S'inscrire</a>
+        </li>
+        <li>
+          <a href="/connexion">Se connecter</a>
+        </li>
+      </ul>
+      <?php endif; ?>
     </div>
 
     <ul class="fildariane">

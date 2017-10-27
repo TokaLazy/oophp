@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 25 Octobre 2017 à 13:33
+-- Généré le :  Ven 27 Octobre 2017 à 13:36
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `membres`
 --
 
+DROP TABLE IF EXISTS `membres`;
 CREATE TABLE `membres` (
   `id` int(11) NOT NULL,
   `pseudo` varchar(30) NOT NULL,
@@ -33,7 +34,9 @@ CREATE TABLE `membres` (
   `email` varchar(250) NOT NULL,
   `inscrit` datetime NOT NULL,
   `token` varchar(250) DEFAULT NULL,
-  `avatar` varchar(35) NOT NULL
+  `avatar` varchar(35) NOT NULL,
+  `rang` int(2) NOT NULL DEFAULT '2',
+  `cookie` varchar(250) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -55,7 +58,7 @@ ALTER TABLE `membres`
 -- AUTO_INCREMENT pour la table `membres`
 --
 ALTER TABLE `membres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

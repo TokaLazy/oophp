@@ -14,7 +14,7 @@ class ValidForm
             $this->validEmail(trim($data['email']));
         }
 
-        if (isset($data['password'])) {
+        if (isset($data['confirmPassword'])) {
             $this->validPassword($data['password'], $data['confirmPassword']);
         }
 

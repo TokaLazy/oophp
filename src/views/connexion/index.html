@@ -1,0 +1,42 @@
+<h2 class="container__title">Connexion</h2>
+<div class="formulaire">
+  
+  <?php if (isset($errors)) : ?>
+    <ul class="alert">
+
+      <?php foreach ($errors as $error) : ?>
+      <li class="alert__message alert__message--danger"><?=$error?></li>
+      <?php endforeach; ?>
+
+    </ul>
+  <?php endif; ?>
+  
+  <form action="/connexion" method="post">
+    <div class="formulaire__input">
+      <label for="pseudo">
+        <img src="<?=IMG?>icons/person.png" alt="icon de profile">
+      </label>
+      <input id="pseudo" type="text" name="pseudo" minlength="3" maxlength="15" placeholder="Votre pseudo (sans espace, 3 à 15 caracteres)" value="<?=$pseudo?>" required>
+    </div>
+
+    <div class="formulaire__input">
+      <label for="password">
+        <img src="<?=IMG?>icons/mdp.png" alt="icon de mot de passe">
+      </label>
+      <input id="password" type="password" name="password" placeholder="Votre mot de passe" required>
+    </div>
+
+    <div class="formulaire__check">
+      <input id="remind" type="checkbox" name="souvenir"><label for="remind">Se souvenir de moi </label>
+    </div>
+
+    <div class="formulaire__button">
+      <input type="submit" name="submit" value="Inscrire">
+    </div>
+  </form>
+
+  <p class="formulaire__details">
+    <a href="/register">Pas encore inscrit ?</a>
+    <a href="/forget">Mot de passe oublier</a>
+  </p>
+</div>
