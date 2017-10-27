@@ -1,0 +1,33 @@
+<h2 class="container__title">Réinitialisation</h2>
+<div class="formulaire">
+
+  <?php if (isset($errors)) : ?>
+    <ul class="alert">
+
+      <?php foreach ($errors as $error) : ?>
+      <li class="alert__message alert__message--danger"><?=$error?></li>
+      <?php endforeach; ?>
+
+    </ul>
+  <?php endif; ?>
+
+  <form action="" method="post">
+    <div class="formulaire__input">
+      <label for="password">
+        <img src="<?=IMG?>icons/mdp.png" alt="icon de mot de passe">
+      </label>
+      <input id="password" type="password" name="password" placeholder="Votre nouveau mot de passe*" required>
+    </div>
+
+    <div class="formulaire__input">
+      <label for="confirm">
+        <img src="<?=IMG?>icons/mdp.png" alt="icon de mot de passe">
+      </label>
+      <input id="confirm" type="password" name="confirmPassword" placeholder="Confirmation de mot de passe*" required>
+    </div>
+
+    <div class="formulaire__button">
+      <input type="submit" name="submit" value="Envoyer">
+    </div>
+  </form>
+</div>

@@ -1,0 +1,16 @@
+<h2 class="container__title">Mot de passe oublié</h2>
+<div class="formulaire">
+
+  <form action="/forget" method="post">
+    <div class="formulaire__input">
+      <label for="email">
+        <img src="<?=IMG?>icons/mail.png" alt="icon d'e-mail">
+      </label>
+      <input id="email" type="email" name="email" placeholder="Votre email (pour vérification)*" value="<?=$email?>" required>
+    </div>
+
+    <div class="formulaire__button">
+      <input type="submit" name="submit" value="Renouveler">
+    </div>
+  </form>
+</div>

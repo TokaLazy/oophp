@@ -118,10 +118,9 @@ class Member
         $req->closeCursor();
     }
 
-    public static function sendEmail(Member $member)
+    public static function sendEmail(String $message)
     {
         $title = 'Inscription sur le Site du Savoir';
-        $message = "Cliquez ou copier le lien dans votre navigateur http://".$_SERVER['SERVER_NAME']."/register/confirm/".$member->id()."/".$member->token();
         $header = 'sitedusavoir.com';
 
         mail($member->email(), $title, $message, $header);
