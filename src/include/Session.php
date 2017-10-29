@@ -13,7 +13,7 @@ class Session
     {
         setcookie('souvenir', null, time() - 1);
         unset($_COOKIE['souvenir']);
-        Session::unset(['pseudo', 'avatar', 'rang', 'id']);
+        Session::disable(['pseudo', 'avatar', 'rang', 'id']);
     }
 
     public function existAttr($key)
@@ -40,7 +40,7 @@ class Session
         throw new Exception("L'attribut '$key' est absent de la session");
     }
 
-    public static function unset($key)
+    public static function disable($key)
     {
         if (is_array($key)) {
             foreach ($key as $value) {
