@@ -3,3 +3,4 @@ public/
 *.map
 *.css
 script.js
+src/config/sql.php

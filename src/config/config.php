@@ -30,4 +30,5 @@ define('MODEL', './models/');
 define('VIEW', './views/');
 
 
+require_once('sql.php');
 require_once(INC.'functions.php');

@@ -8,7 +8,8 @@
   "scripts": {
     "start": "gulp",
     "dev": "gulp",
-    "prod": "gulp prod"
+    "prod": "gulp prod",
+    "clean": "gulp clean"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
