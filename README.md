@@ -9,35 +9,35 @@ Si vous êtes sur Linux ou Mac. Il y a des chances pour que cela ne fonctionne p
 ## Les builds
 Les scripts de build sont gérés avec Gulp. Il y en a deux différents.
 
-### Build de developpement
+### Build de développement
 ```shell
 yarn start
-// ou
+# ou
 npm start
 ```
-Ce build de dev permet de compiler à la volé les fichiers scss et javascript. Un sourcemap y est incorporé pour facilité le deboggage.
+Ce build de dev permet de compiler à la volé les fichiers scss et javascript. Un sourcemap y est incorporé pour faciliter le débogage.
 
 ### Build de production
 ```shell
 yarn prod
-// ou
+# ou
 npm prod
 ```
 Avec ce build, un dossier `public` est créé et contient la totalité des fichiers nécessaire au bon fonctionnement du site en prod. Les assets sont minifier.
 
 
 ## Architecture
-Afin de facilité la maintenabilité du code plusieurs dossiers sont disponibles:
+Afin de faciliter la maintenabilité du code plusieurs dossiers sont disponibles:
 - [config](#config)
 - [controllers](#controllers)
-- [bd](#bd)
+- [db](#db)
 - [include](#include)
 - [models](#models)
 - [resources](#resources)
 - [views](#views)
 
 ### Config
-Contient les fichiers necessaires et obligatoire pour le fonctionnement du projet. Il contient un fichier caché `sql.php` qui contient les identifiants pour la connexion à la base de données. Il suffi de se baser sur le fichier `sql.exemple.php`.
+Contient les fichiers nécessaires et obligatoire pour le fonctionnement du projet. Il contient un fichier caché `sql.php` qui contient les identifiants pour la connexion à la base de données. Il suffit de se baser sur le fichier `sql.exemple.php`.
 
 ### Controllers
 Contient les "controller" du MVC. On y traite les informations reçu du model, ainsi que la gestion des routes.
@@ -49,7 +49,7 @@ Contient au minimum la dernière version du la base de données à utiliser.
 Assez difficile à expliquer... On dire pour l'instant que ce dossier contient les fichiers qui n'entrent pas dans les critères des autres dossiers.
 
 ### Models
-Contient les "model" du MVC. Tout les requetes à la base de donnée s'y trouve.
+Contient les "model" du MVC. Tout les requêtes à la base de donnée s'y trouve.
 
 ### Resources
 Contient les assets. Font, feuille de style, javascript et images y sont rangés.
