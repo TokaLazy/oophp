@@ -6,6 +6,9 @@ Le projet n'a pour l'instant été testé que sur Windows en utilisant WampServe
 Si vous êtes sur Linux ou Mac. Il y a des chances pour que cela ne fonctionne pas. Si c'est le cas, merci d'ouvrir une Issue.
 
 
+## Contribution
+Si l'envie vous dit de participer sur ce projet, ne soyez pas timide. Suivez simplement les instructions [ci-joint](contribution.md).
+
 ## Les builds
 Les scripts de build sont gérés avec Gulp. Il y en a deux différents.
 
