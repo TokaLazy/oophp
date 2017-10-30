@@ -11,4 +11,4 @@ $session->autoConnect();
 $router = new Router();
 $router->request();
 
-$session->unset('flash');
+$session->disable('flash');
