@@ -21,6 +21,18 @@ class ValidForm
         if (isset($data['avatar']) && !empty($data['avatar']['name'])) {
             $this->validAvatar($data['avatar'], $data['pseudo']);
         }
+
+        if (isset($data['localisation'])) {
+            $this->validLocalisation(trim($data['localisation']));
+        }
+
+        if (isset($data['siteweb'])) {
+            $this->validSiteweb(trim($data['siteweb']));
+        }
+
+        if (isset($data['signature'])) {
+            $this->validSignature(trim($data['signature']));
+        }
     }
 
     public function getErrors()
@@ -50,7 +62,7 @@ class ValidForm
 
     private function validPassword($password, $confirm)
     {
-        if ($password !== $confirm || empty($password)) {
+        if ($password !== $confirm) {
             $this->errors[] = FORM_ERR_PASSWORD;
         }
     }
@@ -78,9 +90,30 @@ class ValidForm
             $this->errors[] = FORM_ERR_AVATAR_FORMAT;
         }
 
-        $targetFile = IMG.'avatars/'.trim($pseudo).$extension;
-        if (file_exists($targetFile)) {
-            $errors[] = FORM_ERR_AVATAR_EXIST . $pseudo.$extension . '.';
+        // $targetFile = IMG.'avatars/'.trim($pseudo).$extension;
+        // if (file_exists($targetFile)) {
+        //     $errors[] = FORM_ERR_AVATAR_EXIST . $pseudo.$extension . '.';
+        // }
+    }
+
+    private function validLocalisation($localisation)
+    {
+        if (strlen($localisation) < 2 && !empty($localisation)) {
+            $this->errors[] = 'Votre localisation semble étrange.';
+        }
+    }
+
+    private function validSiteweb($siteweb)
+    {
+        if (!filter_var($siteweb, FILTER_VALIDATE_URL) && !empty($siteweb)) {
+            $this->errors[] = 'Votre site web ne semble pas être valide.';
+        }
+    }
+
+    private function validSignature($signature)
+    {
+        if (strlen($signature) < 3 && !empty($signature)) {
+            $this->errors[] = 'Votre signature est trop petite.';
         }
     }
 }

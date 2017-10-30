@@ -25,11 +25,16 @@
       background: #1bbc9b;
     }
 
-    input {
+    input, textarea {
       flex-grow: 1;
       padding: .5em 1em;
       border: 0;
       background: #edebeb;
+    }
+
+    textarea {
+      min-height: 7.5em;
+      max-height: 75vh;
     }
   }
 
