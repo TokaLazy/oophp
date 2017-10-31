@@ -1,6 +1,7 @@
 <?php
 
 require_once('Controller.php');
+require_once(INC.'Session.php');
 
 class ErrorController extends Controller
 {
@@ -12,6 +13,8 @@ class ErrorController extends Controller
         $folder = $this->folder;
         $page = __FUNCTION__;
         $title = $this->title;
+
+        Session::setAriane(['Accueil' => '/']);
 
         require_once(VIEW.'layout.html');
     }

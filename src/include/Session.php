@@ -31,6 +31,11 @@ class Session
         $_SESSION['flash'][$state][] = $value;
     }
 
+    public static function setAriane(Array $message)
+    {
+        $_SESSION['ariane'] = $message;
+    }
+
     public function getAttr($key)
     {
         if ($this->existAttr($key)) {

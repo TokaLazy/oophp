@@ -74,7 +74,9 @@
     </div>
 
     <ul class="fildariane">
-      <li><a href="/">Accueil</a></li>
+      <?php foreach ($_SESSION['ariane'] as $page => $url) : ?>
+      <li><a href="<?=$url?>"><?=$page?></a></li>
+      <?php endforeach; ?>
     </ul>
   </header>
 

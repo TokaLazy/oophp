@@ -16,6 +16,11 @@ class ProfilController extends Controller
         $page = __FUNCTION__;
         $title = $this->title;
 
+        Session::setAriane([
+            'Accueil' => '/',
+            'Profil' => '/profil/parametres'
+        ]);
+
         $member = Member::connexion('id', $_SESSION['id']);
 
         $pseudo = $member->pseudo();
