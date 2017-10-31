@@ -16,20 +16,20 @@
         <a href="/">Site du Savoir</a>
       </h1>
 
-      <nav class="header__nav">
+      <!-- <nav class="header__nav">
         <a href="/forum">Forum</a>
         <a href="/tutoriels">Tutoriels</a>
         <a href="/blog">Blog</a>
-      </nav>
+      </nav> -->
 
-      <form class="header__search" action="/search" method="get">
+      <!-- <form class="header__search" action="/search" method="get">
         <div class="header__search-bar">
           <input type="text" name="q" placeholder="Rechercher">
           <button type="submit">
             <img src="<?=IMG?>icons/search.png" alt="">
           </button>
         </div>
-      </form>
+      </form> -->
 
       <?php if (isset($_SESSION['id'])) : ?>
       <ul class="header__member">
@@ -42,7 +42,7 @@
               <li>
                 <a href="/profil/parametres">Parametres</a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="../membre/amis.php">Amis</a>
               </li>
               <li>
@@ -53,7 +53,7 @@
               </li>
               <li>
                 <a href="../membre/mescontenus.php">Mes Contenus</a>
-              </li>
+              </li> -->
               <li>
                 <a href="/deconnexion">Se deconnecter</a>
               </li>
