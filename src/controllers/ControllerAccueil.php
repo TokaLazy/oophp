@@ -1,6 +1,7 @@
 <?php
 
 require_once('Controller.php');
+require_once(INC.'Session.php');
 
 class AccueilController extends Controller
 {
@@ -12,6 +13,8 @@ class AccueilController extends Controller
         $folder = $this->folder;
         $page = __FUNCTION__;
         $title = $this->title;
+
+        Session::setAriane(['Accueil' => '/']);
 
         $presentation = [
             [

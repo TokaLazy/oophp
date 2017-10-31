@@ -16,6 +16,8 @@ class ForgetController extends Controller
         $page = __FUNCTION__;
         $title = $this->title;
 
+        Session::setAriane(['Accueil' => '/']);
+
         $email = '';
 
         if (isset($_POST['submit'])) {
@@ -57,6 +59,8 @@ class ForgetController extends Controller
         $folder = $this->folder;
         $page = __FUNCTION__;
         $title = 'Réinitialisation du mot de passe';
+
+        Session::setAriane(['Accueil' => '/']);
 
         if (Member::exist('id', $_GET['id'])) {
             if (!Member::check('token', $_GET['token'], $_GET['id'])) {

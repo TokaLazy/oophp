@@ -16,6 +16,11 @@ class RegisterController extends Controller
         $page = __FUNCTION__;
         $title = $this->title;
 
+        Session::setAriane([
+            'Accueil' => '/',
+            'Inscription' => '/inscription'
+        ]);
+
         $pseudo = $email = '';
 
         if (isset($_POST['submit'])) {

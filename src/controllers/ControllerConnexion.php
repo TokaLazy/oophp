@@ -16,6 +16,11 @@ class ConnexionController extends Controller
         $page = __FUNCTION__;
         $title = $this->title;
 
+        Session::setAriane([
+            'Accueil' => '/',
+            'Connexion' => '/connexion'
+        ]);
+
         $pseudo = '';
 
         if (isset($_POST['submit'])) {
