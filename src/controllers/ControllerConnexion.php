@@ -32,19 +32,23 @@ class ConnexionController extends Controller
                 } else {
                     $member = Member::connexion('pseudo', $login->pseudo());
 
-                    if (!PASSWORD_VERIFY($login->password(), $member->password())) {
-                        $errors[] = 'Mot de passe ou pseudo incorrecte. Veuillez rééssayer';
+                    if (!empty($member->token())) {
+                        Session::setFlash('warning', 'Vous avez reçu un e-mail pour valider votre inscription ou pour réinitialiser votre mot de passe');
                     } else {
-                        if (!$member->rang()) {
-                            $errors[] = 'Vous avez été banni du site, impossible de vous connecter sur ce site.';
+                        if (!PASSWORD_VERIFY($login->password(), $member->password())) {
+                            $errors[] = 'Mot de passe ou pseudo incorrecte. Veuillez rééssayer';
                         } else {
-                            if (isset($_POST['souvenir'])) {
-                                $member->generateCookie($member->id());
+                            if (!$member->rang()) {
+                                $errors[] = 'Vous avez été banni du site, impossible de vous connecter sur ce site.';
+                            } else {
+                                if (isset($_POST['souvenir'])) {
+                                    $member->generateCookie($member->id());
+                                }
+
+                                Session::setUser($member);
+
+                                redirect();
                             }
-
-                            Session::setUser($member);
-
-                            redirect();
                         }
                     }
                 }
