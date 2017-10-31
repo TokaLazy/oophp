@@ -9,21 +9,22 @@ class Member
     private $COOKIE_CODE = 'MALNUX667';
 
     protected $id;
+    protected $rang;
     protected $pseudo;
     protected $password;
     protected $email;
-    protected $localisation;
-    protected $siteweb;
-    protected $visite;
-    protected $token;
     protected $avatar;
+    protected $siteweb;
+    protected $localisation;
     protected $signature;
     protected $inscrit;
-    protected $rang;
+    protected $visite;
+    protected $token;
+    protected $cookie;
 
+    protected $posts;
     protected $reset;
     protected $reset_at;
-    protected $cookie;
 
 
     public function __construct($member)
@@ -93,12 +94,14 @@ class Member
     public static function insert(Member $member)
     {
         $db = Db::getInstance();
-        $req = $db->prepare("INSERT INTO membres (pseudo, password, email, inscrit, token, avatar) VALUES (:pseudo, :password, :email, NOW(), :token, :avatar)");
+        $req = $db->prepare("INSERT INTO membres
+        (pseudo, password, email, avatar, token)
+        VALUES (:pseudo, :password, :email, :avatar, :token)");
         $req->bindValue(':pseudo', $member->pseudo(), PDO::PARAM_STR);
         $req->bindValue(':password', $member->password(), PDO::PARAM_STR);
         $req->bindValue(':email', $member->email(), PDO::PARAM_STR);
-        $req->bindValue(':token', $member->token(), PDO::PARAM_STR);
         $req->bindValue(':avatar', $member->avatar(), PDO::PARAM_STR);
+        $req->bindValue(':token', $member->token(), PDO::PARAM_STR);
         $req->execute();
         $req->closeCursor();
     }
@@ -106,13 +109,18 @@ class Member
     public function update(Member $member)
     {
         $db = Db::getInstance();
-        $req = $db->prepare("UPDATE membres SET pseudo = :pseudo, password = :password, email = :email, avatar = :avatar, cookie = :cookie, token = :token WHERE id = :id");
+        $req = $db->prepare("UPDATE membres
+        SET pseudo = :pseudo, password = :password, email = :email, avatar = :avatar, siteweb = :siteweb, localisation = :localisation, signature = :signature, token = :token, cookie = :cookie, visite = NOW()
+        WHERE id = :id");
         $req->bindValue(':pseudo', $member->pseudo(), PDO::PARAM_STR);
         $req->bindValue(':password', $member->password(), PDO::PARAM_STR);
         $req->bindValue(':email', $member->email(), PDO::PARAM_STR);
         $req->bindValue(':avatar', $member->avatar(), PDO::PARAM_STR);
-        $req->bindValue(':cookie', $member->cookie(), PDO::PARAM_STR);
+        $req->bindValue(':siteweb', $member->siteweb(), PDO::PARAM_STR);
+        $req->bindValue(':localisation', $member->localisation(), PDO::PARAM_STR);
+        $req->bindValue(':signature', $member->signature(), PDO::PARAM_STR);
         $req->bindValue(':token', $member->token(), PDO::PARAM_STR);
+        $req->bindValue(':cookie', $member->cookie(), PDO::PARAM_STR);
         $req->bindValue(':id', $member->id(), PDO::PARAM_INT);
         $req->execute();
         $req->closeCursor();
@@ -217,14 +225,14 @@ class Member
         $this->id = intval($value);
     }
 
+    public function setRang($value)
+    {
+        $this->rang = $value;
+    }
+
     public function setPseudo($value)
     {
         $this->pseudo = trim($value);
-    }
-
-    public function setEmail($value)
-    {
-        $this->email = trim($value);
     }
 
     public function setPassword($value)
@@ -232,19 +240,38 @@ class Member
         $this->password = $value;
     }
 
-    public function setToken($value)
+    public function setEmail($value)
     {
-        $this->token = $value;
+        $this->email = trim($value);
     }
 
     public function setAvatar($value)
     {
         $this->avatar = $value;
+
+        if (is_array($value)) {
+            $this->generateAvatar($this);
+        }
     }
 
-    public function setRang($value)
+    public function setSiteweb($value)
     {
-        $this->rang = $value;
+        $this->siteweb = $value;
+    }
+
+    public function setLocalisation($value)
+    {
+        $this->localisation = trim($value);
+    }
+
+    public function setSignature($value)
+    {
+        $this->signature = trim($value);
+    }
+
+    public function setToken($value)
+    {
+        $this->token = $value;
     }
 
     public function setCookie($value)
@@ -262,14 +289,14 @@ class Member
         return $this->id;
     }
 
+    public function rang()
+    {
+        return $this->rang;
+    }
+
     public function pseudo()
     {
         return $this->pseudo;
-    }
-
-    public function email()
-    {
-        return $this->email;
     }
 
     public function password()
@@ -277,9 +304,9 @@ class Member
         return $this->password;
     }
 
-    public function token()
+    public function email()
     {
-        return $this->token;
+        return $this->email;
     }
 
     public function avatar()
@@ -287,9 +314,34 @@ class Member
         return $this->avatar;
     }
 
-    public function rang()
+    public function siteweb()
     {
-        return $this->rang;
+        return $this->siteweb;
+    }
+
+    public function localisation()
+    {
+        return $this->localisation;
+    }
+
+    public function signature()
+    {
+        return $this->signature;
+    }
+
+    public function inscrit()
+    {
+        return $this->inscrit;
+    }
+
+    public function visite()
+    {
+        return $this->visite;
+    }
+
+    public function token()
+    {
+        return $this->token;
     }
 
     public function cookie()
