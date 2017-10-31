@@ -26,8 +26,7 @@ class ProfilController extends Controller
 
         if (isset($_POST['submit'])) {
             $post = array_merge($_POST, $_FILES);
-            $validator = new ValidForm($post);
-            $errors = $validator->getErrors();
+            ValidForm::init($post);
 
             $pseudo = trim($post['pseudo']);
             $email = trim($post['email']);
@@ -35,7 +34,7 @@ class ProfilController extends Controller
             $siteweb = trim($post['siteweb']);
             $signature = trim($post['signature']);
 
-            if (!count($errors)) {
+            if (!Session::existAttr('flash')) {
                 if (!empty($post['password'])) {
                     $post['password'] = PASSWORD_HASH($post['password'], PASSWORD_BCRYPT);
                     $member->setPassword($post['password']);
