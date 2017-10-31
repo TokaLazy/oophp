@@ -37,6 +37,7 @@ class ProfilController extends Controller
 
             if (!count($errors)) {
                 if (!empty($post['password'])) {
+                    $post['password'] = PASSWORD_HASH($post['password'], PASSWORD_BCRYPT);
                     $member->setPassword($post['password']);
                 }
 
