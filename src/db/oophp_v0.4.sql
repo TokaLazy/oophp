@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 27 Octobre 2017 à 13:36
+-- Généré le :  Mar 31 Octobre 2017 à 13:53
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -29,15 +29,19 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `membres`;
 CREATE TABLE `membres` (
   `id` int(11) NOT NULL,
+  `rang` int(2) NOT NULL DEFAULT '2',
   `pseudo` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(250) NOT NULL,
-  `inscrit` datetime NOT NULL,
-  `token` varchar(250) DEFAULT NULL,
   `avatar` varchar(35) NOT NULL,
-  `rang` int(2) NOT NULL DEFAULT '2',
+  `siteweb` varchar(100) DEFAULT NULL,
+  `localisation` varchar(100) DEFAULT NULL,
+  `signature` varchar(200) DEFAULT NULL,
+  `inscrit` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `visite` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `token` varchar(250) DEFAULT NULL,
   `cookie` varchar(250) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Liste des membres inscrit sur le site';
 
 --
 -- Index pour les tables exportées
@@ -48,7 +52,8 @@ CREATE TABLE `membres` (
 --
 ALTER TABLE `membres`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `pseudo` (`pseudo`);
+  ADD UNIQUE KEY `pseudo` (`pseudo`),
+  ADD UNIQUE KEY `email` (`email`,`avatar`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
