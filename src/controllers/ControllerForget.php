@@ -19,12 +19,11 @@ class ForgetController extends Controller
         $email = '';
 
         if (isset($_POST['submit'])) {
-            $validator = new ValidForm($_POST);
-            $errors = $validator->getErrors();
+            ValidForm::init($_POST);
 
             $email = trim($_POST['email']);
 
-            if (!count($errors)) {
+            if (!Session::existAttr('flash')) {
                 $member = Member::init($_POST);
 
                 if (!Member::exist('email', $email)) {
@@ -66,10 +65,9 @@ class ForgetController extends Controller
                 redirect('/connexion');
             } else {
                 if (isset($_POST['submit'])) {
-                    $validator = new ValidForm($_POST);
-                    $errors = $validator->getErrors();
+                    ValidForm::init($_POST);
 
-                    if (!count($errors)) {
+                    if (!Session::existAttr('flash')) {
                         $_POST['password'] = PASSWORD_HASH($_POST['password'], PASSWORD_BCRYPT);
 
                         $member = Member::connexion('id', $_GET['id']);

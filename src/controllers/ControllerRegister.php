@@ -20,26 +20,25 @@ class RegisterController extends Controller
 
         if (isset($_POST['submit'])) {
             $post = array_merge($_POST, $_FILES);
-            $validator = new ValidForm($post);
-            $errors = $validator->getErrors();
+            ValidForm::init($post);
 
             $pseudo = trim($post['pseudo']);
             $email = trim($post['email']);
 
-            if (!count($errors)) {
+            if (!Session::existAttr('flash')) {
                 $post['password'] = PASSWORD_HASH($post['password'], PASSWORD_BCRYPT);
 
                 $member = Member::init($post);
 
                 if (Member::exist('pseudo', $member->pseudo())) {
-                    $errors[] = "Votre pseudo est déjà pris, nous sommes désolé.";
+                    Session::setFlash('warning', 'Votre pseudo est déjà pris, nous sommes désolé.');
                 }
 
                 if (Member::exist('email', $member->email())) {
-                    $errors[] = "Votre adresse e-mail est déjà prise.";
+                    Session::setFlash('warning', 'Votre adresse e-mail est déjà prise.');
                 }
 
-                if (!count($errors)) {
+                if (!Session::existAttr('flash')) {
                     Member::insert($member);
 
                     $member->setId(Member::getId($member)['id']);

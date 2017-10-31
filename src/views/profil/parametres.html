@@ -1,16 +1,5 @@
 <h2 class="container__title">Modification Infos : <?=$member->pseudo()?></h2>
 <div class="formulaire">
-
-  <?php if (isset($errors)) : ?>
-    <ul class="alert">
-
-      <?php foreach ($errors as $error) : ?>
-      <li class="alert__message alert__message--danger"><?=$error?></li>
-      <?php endforeach; ?>
-
-    </ul>
-  <?php endif; ?>
-
   <form action="/profil/parametres" method="post" enctype="multipart/form-data">
     <div class="formulaire__input">
       <label for="pseudo">

@@ -1,16 +1,5 @@
 <h2 class="container__title">Connexion</h2>
 <div class="formulaire">
-  
-  <?php if (isset($errors)) : ?>
-    <ul class="alert">
-
-      <?php foreach ($errors as $error) : ?>
-      <li class="alert__message alert__message--danger"><?=$error?></li>
-      <?php endforeach; ?>
-
-    </ul>
-  <?php endif; ?>
-  
   <form action="/connexion" method="post">
     <div class="formulaire__input">
       <label for="pseudo">

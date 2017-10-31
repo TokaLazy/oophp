@@ -19,27 +19,26 @@ class ConnexionController extends Controller
         $pseudo = '';
 
         if (isset($_POST['submit'])) {
-            $validator = new ValidForm($_POST);
-            $errors = $validator->getErrors();
+            ValidForm::init($_POST);
 
             $pseudo = trim($_POST['pseudo']);
 
-            if (!count($errors)) {
+            if (!Session::existAttr('flash')) {
                 $login = Member::init($_POST);
 
                 if (!Member::exist('pseudo', $login->pseudo())) {
-                    $errors[] = 'Le compte n\'existe pas.';
+                    Session::setFlash('danger', 'Le compte n\'existe pas.');
                 } else {
                     $member = Member::connexion('pseudo', $login->pseudo());
 
-                    if (!empty($member->token())) {
-                        Session::setFlash('warning', 'Vous avez reçu un e-mail pour valider votre inscription ou pour réinitialiser votre mot de passe');
+                    if (!PASSWORD_VERIFY($login->password(), $member->password())) {
+                        Session::setFlash('danger', 'Mot de passe ou pseudo incorrecte. Veuillez rééssayer');
                     } else {
-                        if (!PASSWORD_VERIFY($login->password(), $member->password())) {
-                            $errors[] = 'Mot de passe ou pseudo incorrecte. Veuillez rééssayer';
+                        if (!empty($member->token())) {
+                            Session::setFlash('warning', 'Vous avez reçu un e-mail pour valider votre inscription ou pour réinitialiser votre mot de passe');
                         } else {
                             if (!$member->rang()) {
-                                $errors[] = 'Vous avez été banni du site, impossible de vous connecter sur ce site.';
+                                Session::setFlash('warning', 'Vous avez été banni du site, impossible de vous connecter sur ce site.');
                             } else {
                                 if (isset($_POST['souvenir'])) {
                                     $member->generateCookie($member->id());

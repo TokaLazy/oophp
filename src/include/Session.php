@@ -16,7 +16,7 @@ class Session
         Session::disable(['pseudo', 'avatar', 'rang', 'id']);
     }
 
-    public function existAttr($key)
+    public static function existAttr($key)
     {
         return isset($_SESSION[$key]) && !empty($_SESSION[$key]);
     }
