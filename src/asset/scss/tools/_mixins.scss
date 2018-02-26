@@ -1,0 +1,30 @@
+@mixin media($min: null, $max: null) {
+   // Media print
+   $media: 'print';
+   // min-width
+   @if $min != null and $max == null {
+      $min-width: rem($min);
+      $media: 'screen and (min-width:#{$min-width})';
+   }
+   // max-width
+   @else if $min == null and $max != null {
+      $width: rem($max + $mobile - 1);
+      $media: 'screen and (max-width:#{$width})';
+   }
+   // min-width AND max-width
+   @else if $min != null and $max != null {
+      $width: rem($max + $mobile - 1);
+      $min-width: rem($min);
+      $media: 'screen and (min-width:#{$min-width}) and (max-width:#{$width})';
+
+      @if $min >= ($max + $mobile) {
+         $media: null;
+      }
+   }
+
+   @if $media != null {
+      @media #{$media} {
+         @content;
+      }
+   }
+}

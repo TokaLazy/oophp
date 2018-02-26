@@ -1,0 +1,12 @@
+.container {
+   max-width: em(1000);
+   // height: 100%;
+   margin: 2em auto;
+
+   &__title {
+      color: #184b5d;
+      font-family: $font-major;
+      font-size: em(35);
+      text-align: center;
+   }
+}
