@@ -1,0 +1,63 @@
+<h2 class="container__title">Modification Infos : <?=$member->pseudo()?></h2>
+<div class="formulaire">
+  <form action="/profil/parametres" method="post" enctype="multipart/form-data">
+    <div class="formulaire__input">
+      <label for="pseudo">
+        <img src="<?=IMG?>icons/person.png" alt="icon de profile">
+      </label>
+      <input id="pseudo" type="text" name="pseudo" minlength="3" maxlength="15" placeholder="Votre pseudo(Sans Espace,3 a 15 caracteres)*" value="<?=$pseudo?>" required>
+    </div>
+
+    <div class="formulaire__input">
+      <label for="password">
+        <img src="<?=IMG?>icons/mdp.png" alt="icon de mot de passe">
+      </label>
+      <input id="password" type="password" name="password" placeholder="Votre mot de passe">
+    </div>
+
+    <div class="formulaire__input">
+      <label for="confirm">
+        <img src="<?=IMG?>icons/mdp.png" alt="icon de mot de passe">
+      </label>
+      <input id="confirm" type="password" name="confirmPassword" placeholder="Confirmation de mot de passe">
+    </div>
+
+    <div class="formulaire__input">
+      <label for="localisation">
+        <img src="<?=IMG?>icons/place.png" alt="icon de localisation">
+      </label>
+      <input id="localisation" type="text" name="localisation" placeholder="Votre localisation" value="<?=$localisation?>">
+    </div>
+
+    <div class="formulaire__input">
+      <label for="email">
+        <img src="<?=IMG?>icons/mail.png" alt="icon d'e-mail">
+      </label>
+      <input id="email" type="email" name="email" placeholder="Votre adresse e-mail" value="<?=$email?>" required>
+    </div>
+
+    <div class="formulaire__input">
+      <label for="siteweb">
+
+      </label>
+      <input id="siteweb" type="text" name="siteweb" placeholder="Votre site web" value="<?=$siteweb?>">
+    </div>
+
+    <div class="formulaire__input">
+      <textarea name="signature"><?=$signature?></textarea>
+    </div>
+
+    <div class="formulaire__input">
+      <img src="<?=IMG?>avatar/<?=$member->avatar()?>" alt="image de profil de <?=$member->pseudo()?>">
+    </div>
+
+    <div class="formulaire__input">
+      <label for="avatar"></label>
+      <input type="file" value="Avatar" name="avatar" placeholder="votre Avatar">
+    </div>
+
+    <div class="formulaire__button">
+      <input type="submit" name="submit" value="Mettre à jour">
+    </div>
+  </form>
+</div>

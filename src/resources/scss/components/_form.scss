@@ -1,0 +1,88 @@
+
+.formulaire {
+  width: 620px;
+  margin: 2.5em auto;
+  padding: 0;
+
+  input, select, textarea, button {
+    font-size: 1em;
+  }
+
+  &__input {
+    display: flex;
+    width: 100%;
+
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 3.75em;
+      min-height: 2.75em;
+      background: #1bbc9b;
+    }
+
+    input, textarea {
+      flex-grow: 1;
+      padding: .5em 1em;
+      border: 0;
+      background: #edebeb;
+    }
+
+    textarea {
+      min-height: 7.5em;
+      max-height: 75vh;
+    }
+  }
+
+  &__check {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      min-height: 2.2em;
+      color: #176b89;
+      font-size: 1.25em;
+    }
+
+    input {
+      width: 2em;
+      height: 2em;
+      margin-right: 1em;
+    }
+  }
+
+  &__button {
+    display: flex;
+
+    [type='submit'], [type='reset'], [type='button'] {
+      flex-grow: 1;
+      min-height: 2.75em;
+      border: 0;
+      background: #1bbc9b;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
+  &__details {
+    display: flex;
+    justify-content: space-around;
+    margin: 2em auto 2em;
+    font-family: $font-major;
+    font-size: 1.25em;
+
+    a {
+      color: $clr-link;
+    }
+  }
+}

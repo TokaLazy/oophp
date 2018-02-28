@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><?=$title?></title>
+  <link rel="stylesheet" href="<?=CSS?>/style.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__major">
+      <h1 class="header__logo">
+        <a href="/">Site du Savoir</a>
+      </h1>
+
+      <!-- <nav class="header__nav">
+        <a href="/forum">Forum</a>
+        <a href="/tutoriels">Tutoriels</a>
+        <a href="/blog">Blog</a>
+      </nav> -->
+
+      <!-- <form class="header__search" action="/search" method="get">
+        <div class="header__search-bar">
+          <input type="text" name="q" placeholder="Rechercher">
+          <button type="submit">
+            <img src="<?=IMG?>icons/search.png" alt="">
+          </button>
+        </div>
+      </form> -->
+
+      <?php if (isset($_SESSION['id'])) : ?>
+      <ul class="header__member">
+        <li class="header__avatar">
+          <a href="/profil/parametres">
+            <img src="<?=IMG?>avatar/<?=$_SESSION['avatar']?>" alt="avatar">
+          </a>
+          <div class="header__menu">
+            <ul>
+              <li>
+                <a href="/profil/parametres">Parametres</a>
+              </li>
+              <!-- <li>
+                <a href="../membre/amis.php">Amis</a>
+              </li>
+              <li>
+                <a href="../membre/messagesprives.php">Messages</a>
+              </li>
+              <li>
+                <a href="../membre/notifications.php">Notiffications</a>
+              </li>
+              <li>
+                <a href="../membre/mescontenus.php">Mes Contenus</a>
+              </li> -->
+              <li>
+                <a href="/deconnexion">Se deconnecter</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <?php else : ?>
+      <ul class="header__subscribe">
+        <li>
+          <a href="/register">S'inscrire</a>
+        </li>
+        <li>
+          <a href="/connexion">Se connecter</a>
+        </li>
+      </ul>
+      <?php endif; ?>
+    </div>
+
+    <ul class="fildariane">
+      <?php foreach ($_SESSION['ariane'] as $page => $url) : ?>
+      <li><a href="<?=$url?>"><?=$page?></a></li>
+      <?php endforeach; ?>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <?php if (isset($_SESSION['flash'])) : ?>
+    <ul class="alert">
+
+      <?php foreach ($_SESSION['flash'] as $color => $flash) : ?>
+        <?php foreach($flash as $message) : ?>
+        <li class="alert__message alert__message--<?=$color?>"><?=$message?></li>
+        <?php endforeach; ?>
+      <?php endforeach; ?>
+
+    </ul>
+    <?php endif; ?>
+
+    <?php require_once(VIEW."$folder/$page.html"); ?>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__online">
+      <h2 class="footer__title">Qui est en ligne ?</h2>
+      <p>
+        Il y a actuellement "$count_online" connectés, dont "$count_membres" membres et "$count_visiteurs" invités "$texte_a_afficher"
+      </p>
+    </div>
+    <div class="footer__about">
+      <h2 class="footer__title">Site du Savoir</h2>
+      <p>
+        Site du Savoir est un projet opensource c'est a dire libre, tout le monde peut y participer. Il consiste a reunir les pogrammers du monde et a s'entraider entre eux via le site.
+      </p>
+    </div>
+    <div class="footer__contact">
+      <h2 class="footer__title">Me contacter</h2>
+      <ul>
+        <li><a href="https://www.facebook.com/abdoulmalikhamidou">Facebook</a></li>
+        <li><a href="https://twitter.com/AbdoulMalikH">Twitter</a></li>
+        <li><a href="https://github.com/malnuxstarck">Github</a></li>
+        <li><a href="http://malnuxstarck.alwaysdata.net">Siteperso</a></li>
+      </ul>
+    </div>
+    <div class="footer__copyright">
+      Site du Savoir Tous droits reservés &copy; copyright "date('Y')"
+    </div>
+  </footer>
+
+  <script src="<?=JS?>/script.js"></script>
+</body>
+
+</html>

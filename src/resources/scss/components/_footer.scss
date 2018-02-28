@@ -1,0 +1,42 @@
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  background: #2b8bad;
+  font-family: $font-minor;
+  font-size: 18px;
+
+  &__online, &__about, &__contact {
+    width: 25%;
+  }
+
+  &__contact {
+    color: blue;
+    text-align: center;
+
+    li {
+      padding: .25em;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__copyright {
+    width: 100%;
+    padding: 10px;
+    background: #267b99;
+    color: #fff;
+    text-align: center;
+  }
+
+  &__title {
+    margin-bottom: 0;
+    color: #fff;
+    font-family: $font-major;
+    font-size: 23px;
+    text-align: center;
+  }
+}

@@ -1,5 +1,6 @@
 node_modules/
-
-public/asset
-public/layout.php
-public/config/sql.php
+public/
+*.map
+*.css
+script.js
+src/config/sql.php
