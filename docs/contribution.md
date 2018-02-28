@@ -29,6 +29,7 @@ Liste des taches disponibles :
 - FIXED : une résolution
 - DELETE : une suppression
 
+---
 
 ### ![#e91e63](https://placehold.it/15/e91e63/000000?text=+) Les émojis
 
