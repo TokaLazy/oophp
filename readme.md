@@ -1,9 +1,9 @@
-# OOPHP
+# ![#03a9f4](https://placehold.it/15/03a9f4/000000?text=+) OOPHP
 
 > Projet proposé par [malnuxstarck](https://github.com/malnuxstarck/) dans le cadre de renforcer ses connaissance dans le PHP et le dévelopement en général. Le [site du savoir](https://github.com/malnuxstarck/Sitedusavoir) est une plateforme d'entre-aide avec tutoriels, forum et blog.
 
 
-## Arbre de presentation
+## ![#4caf50](https://placehold.it/15/4caf50/000000?text=+) Arbre de presentation
 
 - [Architecture]
   - Stack
@@ -26,7 +26,7 @@
   - [Les émojis](docs/contribution.md#les-émojis)
 
 
-  ## À faire
+## ![#4caf50](https://placehold.it/15/4caf50/000000?text=+) À faire
 
 - [ ] Rédiger la doc pour l'architecture.
 - [ ] Rédiger la doc pour l'installation.
@@ -36,6 +36,6 @@
 - [ ] Mettre à jour la date de derniere visite
 
 
-## Questions
+## ![#4caf50](https://placehold.it/15/4caf50/000000?text=+) Questions
 
 - [ ] À quoi sert d'avoir un ami ?

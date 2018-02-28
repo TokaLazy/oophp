@@ -1,7 +1,7 @@
-# Contributions au projet
+# ![#03a9f4](https://placehold.it/15/03a9f4/000000?text=+) Contributions au projet
 
 
-## Procédure à suivre
+## ![#4caf50](https://placehold.it/15/4caf50/000000?text=+) Procédure à suivre
 
 Pour contribuer au projet suivez les étapes suivantes :
 - Fork du repository
@@ -12,7 +12,7 @@ Pour contribuer au projet suivez les étapes suivantes :
 Après vérification de votre code, la Pull-Request sera mergé sur la branche en question, puis, sera inclus lors de la prochaine release.
 
 
-## Comment faire son message de commit
+## ![#4caf50](https://placehold.it/15/4caf50/000000?text=+) Comment faire son message de commit
 
 Pour améliorer la compréhension des commits, il faut absolument utiliser la syntaxe expliqué ci-dessous.
 ``` bash
@@ -21,7 +21,7 @@ $ git commit -m "<emoji> <tache> - <message>"
 ```
 
 
-### Les taches
+### ![#e91e63](https://placehold.it/15/e91e63/000000?text=+) Les taches
 
 Liste des taches disponibles :
 - ADD : un ajout
@@ -30,7 +30,7 @@ Liste des taches disponibles :
 - DELETE : une suppression
 
 
-### Les émojis
+### ![#e91e63](https://placehold.it/15/e91e63/000000?text=+) Les émojis
 
 | Type | Emoji | Shortcode |
 |------|-------|-----------|
