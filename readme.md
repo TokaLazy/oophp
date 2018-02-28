@@ -1,57 +1,42 @@
-# Site du Savoir MVC/OOP
+# ![#03a9f4](https://placehold.it/15/03a9f4/000000?text=+) OOPHP
 
-> Refonte du [repository du Site du Savoir](https://github.com/malnuxstarck/Sitedusavoir) avec une archi MVC.
-
-Le projet n'a pour l'instant été testé que sur Windows en utilisant WampServer pour gérer le PHP.
-Si vous êtes sur Linux ou Mac. Il y a des chances pour que cela ne fonctionne pas. Si c'est le cas, merci d'ouvrir une Issue.
+*Projet proposé par [malnuxstarck](https://github.com/malnuxstarck/) dans le cadre de renforcer ses connaissance dans le PHP et le dévelopement en général. Le [site du savoir](https://github.com/malnuxstarck/Sitedusavoir) est une plateforme d'entre-aide avec tutoriels, forum et blog.*
 
 
-## Contribution
-Si l'envie vous dit de participer sur ce projet, ne soyez pas timide. Suivez simplement les instructions [ci-joint](doc/contribution.md).
+## ![#4caf50](https://placehold.it/15/4caf50/000000?text=+) Arbre de presentation
 
-## Les builds
-Les scripts de build sont gérés avec Gulp. Il y en a deux différents.
+- [Architecture](docs/architecture.md)
+  - [Organisation des fichiers](docs/architecture.md#-organisation-des-fichiers)
+    - [Config](docs/architecture.md##-config)
+    - [Controllers](docs/architecture.md##-controllers)
+    - [Db](docs/architecture.md##-db)
+    - [Include](docs/architecture.md##-include)
+    - [Models](docs/architecture.md##-models)
+    - [Resources](docs/architecture.md##-resources)
+    - [Views](docs/architecture.md##-views)
+  - [Outils pratiques](docs/architecture.md#-outils-pratiques)
+    - [Editorconfig](docs/architecture.md#-editorconfig)
+    - [Csscomb](docs/architecture.md#-csscomb)
+    - [Eslint](docs/architecture.md#-eslint)
+- [Lancer le projet](docs/commencer.md)
+  - [Installation](docs/commencer.md#-installation)
+  - [Scripts](docs/commencer.md#-scripts)
+- [Contribution](docs/contribution.md)
+  - [Procédure à suivre](docs/contribution.md#-procédure-à-suivre)
+  - [Comment faire son message de commit](docs/contribution.md#-comment-faire-son-message-de-commit)
+  - [Les taches](docs/contribution.md#-les-taches)
+  - [Les émojis](docs/contribution.md#-les-émojis)
 
-### Build de développement
-```shell
-npm start
-```
-Ce build de dev permet de compiler à la volé les fichiers scss et javascript. Un sourcemap y est incorporé pour faciliter le débogage.
 
-### Build de production
-```shell
-npm prod
-```
-Avec ce build, un dossier `public` est créé et contient la totalité des fichiers nécessaire au bon fonctionnement du site en prod. Les assets sont minifier.
+## ![#4caf50](https://placehold.it/15/4caf50/000000?text=+) À faire
+
+- [x] Rédiger la doc pour l'architecture.
+- [x] Rédiger la doc pour le lancement du projet en local.
+- [x] Rédiger la doc pour la contribution d'autres développeurs.
+- [ ] Checker s'il y a un token lors de l'inscription et afficher un message d'erreur si besoin
+- [ ] Mettre à jour la date de derniere visite
 
 
-## Architecture
-Afin de faciliter la maintenabilité du code plusieurs dossiers sont disponibles:
-- [config](#config)
-- [controllers](#controllers)
-- [db](#db)
-- [include](#include)
-- [models](#models)
-- [resources](#resources)
-- [views](#views)
+## ![#4caf50](https://placehold.it/15/4caf50/000000?text=+) Questions
 
-### Config
-Contient les fichiers nécessaires et obligatoire pour le fonctionnement du projet. Il contient un fichier caché `sql.php` qui contient les identifiants pour la connexion à la base de données. Il suffit de se baser sur le fichier `sql.exemple.php`.
-
-### Controllers
-Contient les "controller" du MVC. On y traite les informations reçu du model, ainsi que la gestion des routes.
-
-### Db
-Contient au minimum la dernière version du la base de données à utiliser.
-
-### Include
-Assez difficile à expliquer... On dire pour l'instant que ce dossier contient les fichiers qui n'entrent pas dans les critères des autres dossiers.
-
-### Models
-Contient les "model" du MVC. Tout les requêtes à la base de donnée s'y trouve.
-
-### Resources
-Contient les assets. Font, feuille de style, javascript et images y sont rangés.
-
-### Views
-Contient les "vue" du MVC. A savoir le rendu visuel affiché sur le navigateur.
+- [ ] À quoi sert d'avoir un ami ?
