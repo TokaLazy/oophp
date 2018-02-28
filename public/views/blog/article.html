@@ -1,0 +1,25 @@
+<article class="article">
+  <div class="article__header">
+    <div class="article__thumbnail">
+      <?php if (!empty($article->thumbnail())) : ?>
+      <img src="<?=IMG?>/thumbnail/<?=$article->thumbnail()?>" alt="">
+      <?php endif; ?>
+    </div>
+    <h2 class="article__title"><?=$article->title()?></h2>
+  </div>
+
+  <div class="article__author">
+    <img src="<?=IMG?>avatar/<?=$article->avatar()?>" alt="">
+    <a href="#" title="Profil de l'auteur"><?=$article->author()?></a>
+  </div>
+
+  <?php if (!empty($article->introduction())) : ?>
+  <p><?=$article->introduction()?></p>
+  <?php endif; ?>
+
+  <p><?=$article->message()?></p>
+
+  <?php if (!empty($article->conclusion())) : ?>
+  <p><?=$article->conclusion()?></p>
+  <?php endif; ?>
+</article>
