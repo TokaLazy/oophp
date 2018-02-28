@@ -5,7 +5,7 @@
 
 ## Arbre de presentation
 
-- [Architecture](docs/architecture.md)
+- [Architecture]
   - Stack
     - webpack
     - babel
@@ -16,14 +16,14 @@
     - csscomb
     - eslint
     - editorconfig
-- [Installation](docs/installation.md)
+- [Installation]
   - Manager de package (npm ou yarn)
-- [Lancer le projet](docs/commencer.md)
+- [Lancer le projet]
 - [Contribution](docs/contribution.md)
-  - [Procédure à suivre](docs/contribution.md#Procédure%20à%20suivre)
-  - [Comment faire son message de commit](docs/contribution.md#Comment%20faire%20son%20message%20de%20commit)
-  - [Les taches](docs/contribution.md#Les%20taches)
-  - [Les émojis](docs/contribution.md#Les%20émojis)
+  - [Procédure à suivre](docs/contribution.md#procédure-à-suivre)
+  - [Comment faire son message de commit](docs/contribution.md#comment-faire-son-message-de-commit)
+  - [Les taches](docs/contribution.md#les-taches)
+  - [Les émojis](docs/contribution.md#les-émojis)
 
 
   ## À faire
