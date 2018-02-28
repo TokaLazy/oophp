@@ -6,31 +6,25 @@
 ## ![#4caf50](https://placehold.it/15/4caf50/000000?text=+) Arbre de presentation
 
 - [Architecture]
-  - Stack
-    - webpack
-    - babel
-    - eslint
-    - postcss
-    - scss
+  - Organisation des fichiers
   - Outils pratiques
     - csscomb
     - eslint
     - editorconfig
-- [Installation]
-  - Manager de package (npm ou yarn)
-- [Lancer le projet]
+- [Lancer le projet](docs/commencer.md)
+  - [Installation](docs/commencer.md#-installation)
+  - [Scripts](docs/commencer.md#-scripts)
 - [Contribution](docs/contribution.md)
-  - [Procédure à suivre](docs/contribution.md#procédure-à-suivre)
-  - [Comment faire son message de commit](docs/contribution.md#comment-faire-son-message-de-commit)
-  - [Les taches](docs/contribution.md#les-taches)
-  - [Les émojis](docs/contribution.md#les-émojis)
+  - [Procédure à suivre](docs/contribution.md#-procédure-à-suivre)
+  - [Comment faire son message de commit](docs/contribution.md#-comment-faire-son-message-de-commit)
+  - [Les taches](docs/contribution.md#-les-taches)
+  - [Les émojis](docs/contribution.md#-les-émojis)
 
 
 ## ![#4caf50](https://placehold.it/15/4caf50/000000?text=+) À faire
 
 - [ ] Rédiger la doc pour l'architecture.
-- [ ] Rédiger la doc pour l'installation.
-- [ ] Rédiger la doc pour le lancement du projet en local.
+- [x] Rédiger la doc pour le lancement du projet en local.
 - [x] Rédiger la doc pour la contribution d'autres développeurs.
 - [ ] Checker s'il y a un token lors de l'inscription et afficher un message d'erreur si besoin
 - [ ] Mettre à jour la date de derniere visite
