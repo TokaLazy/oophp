@@ -7,6 +7,7 @@ const UglifyJSWebpackPlugin = require("uglifyjs-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const StyleLintPlugin = require("stylelint-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 // Variable
 const development = process.env.NODE_ENV === "dev";
@@ -55,26 +56,12 @@ let config = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(es6|js|ts|jsx)$/,
         exclude: /(node_modules)/,
-        use: ["babel-loader"]
+        use: ["babel-loader", "eslint-loader"]
       },
       {
-        enforce: "pre",
-        test: /\.js$/,
-        use: ["eslint-loader"]
-      },
-      {
-        test: /\.css$/,
-        use: development
-          ? ["style-loader", ...cssLoader]
-          : ExtractTextWebpackPlugin.extract({
-              fallback: "style-loader",
-              use: cssLoader
-            })
-      },
-      {
-        test: /\.s(a|c)ss$/,
+        test: /\.s[ac]ss$/,
         use: development
           ? ["style-loader", ...cssLoader, "sass-loader"]
           : ExtractTextWebpackPlugin.extract({
@@ -88,9 +75,7 @@ let config = {
           {
             loader: "url-loader",
             options: {
-              limit: 8192,
-              publicPath: "../",
-              outputPath: "img/"
+              limit: 8192
             }
           }
         ]
@@ -120,7 +105,14 @@ let config = {
     new HtmlWebpackPlugin({
       filename: "layout.php",
       template: "./public/views/layout.html"
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: "./src/asset/img",
+        to: "asset/img",
+        toType: "dir"
+      }
+    ])
   ]
 };
 
