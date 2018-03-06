@@ -7,10 +7,20 @@
   "description": "Refonte du repository du Site du Savoir https://github.com/malnuxstarck/Sitedusavoir avec une archi MVC.",
   "license": "MIT",
   "scripts": {
+    "postinstall": "node ./scripts/sqlGenerator.js",
     "start": "cross-env NODE_ENV=dev webpack --color",
     "prod": "cross-env NODE_ENV=prod webpack --color"
   },
   "devDependencies": {
+    "chalk": "~2.3.2",
+    "clear": "~0.1.0",
+    "figlet": "~1.2.0",
+    "inquirer": "~5.1.0",
+    "stylelint": "~9.1.1",
+    "stylelint-config-standard": "~18.1.0",
+    "stylelint-webpack-plugin": "~0.10.3"
+  },
+  "dependencies": {
     "autoprefixer": "~8.0.0",
     "babel-core": "~6.26.0",
     "babel-loader": "~7.1.3",
@@ -33,9 +43,6 @@
     "resolve-url-loader": "~2.2.1",
     "sass-loader": "~6.0.6",
     "style-loader": "~0.20.2",
-    "stylelint": "~9.1.1",
-    "stylelint-config-standard": "~18.1.0",
-    "stylelint-webpack-plugin": "~0.10.3",
     "uglifyjs-webpack-plugin": "~1.2.2",
     "url-loader": "~0.6.2",
     "webpack": "~3.11.0"
