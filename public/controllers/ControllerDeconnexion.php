@@ -1,14 +1,17 @@
 <?php
 
-require_once('Controller.php');
-require_once(INC.'Session.php');
+use Vendor\Session;
+use controllers\Controller;
 
-class DeconnexionController extends Controller
-{
-    public function index()
-    {
+class ControllerDeconnexion extends Controller {
+
+    public function index() {
+
         Session::destroy();
-        Session::setFlash('success', 'Vous êtes à présent déconnecté.');
+        Session::setBanner('success', 'Vous êtes à présent déconnecté.');
+
         redirect();
+
     }
+
 }

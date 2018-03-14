@@ -4,37 +4,37 @@ require_once(MODEL.'ModelMember.php');
 
 class Session
 {
-    public function __construct()
-    {
-        session_start();
-    }
+    // public function __construct()
+    // {
+    //     session_start();
+    // }
 
-    public static function destroy()
-    {
-        setcookie('souvenir', null, time() - 1);
-        unset($_COOKIE['souvenir']);
-        Session::disable(['pseudo', 'avatar', 'rank', 'id']);
-    }
+    // public static function destroy()
+    // {
+    //     setcookie('souvenir', null, time() - 1);
+    //     unset($_COOKIE['souvenir']);
+    //     Session::disable(['pseudo', 'avatar', 'rank', 'id']);
+    // }
 
-    public static function existAttr($key)
-    {
-        return isset($_SESSION[$key]) && !empty($_SESSION[$key]);
-    }
+    // public static function existAttr($key)
+    // {
+    //     return isset($_SESSION[$key]) && !empty($_SESSION[$key]);
+    // }
 
     public function setAttr($key, $value)
     {
         $_SESSION[$key] = $value;
     }
 
-    public static function setFlash($state, $value)
-    {
-        $_SESSION['flash'][$state][] = $value;
-    }
+    // public static function setFlash($state, $value)
+    // {
+    //     $_SESSION['flash'][$state][] = $value;
+    // }
 
-    public static function setAriane(Array $message)
-    {
-        $_SESSION['ariane'] = $message;
-    }
+    // public static function setAriane(Array $message)
+    // {
+    //     $_SESSION['ariane'] = $message;
+    // }
 
     public static function getAttr($key)
     {

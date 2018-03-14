@@ -1,20 +1,16 @@
 <?php
 
-require_once('Controller.php');
-require_once(INC.'Session.php');
+use Vendor\Session;
+use controllers\Controller;
 
-class AccueilController extends Controller
-{
-    protected $folder = 'accueil';
-    protected $title = 'Page d\'accueil';
+class ControllerAccueil extends Controller {
 
-    public function index()
-    {
-        $folder = $this->folder;
-        $page = __FUNCTION__;
-        $title = $this->title;
+    protected function index() {
 
-        Session::setAriane(['Accueil' => '/']);
+        Session::setFolder('accueil');
+        Session::setTitle('Accueil');
+
+        Session::setBreadcrumb(['Accueil' => '/']);
 
         $presentation = [
             [
@@ -34,6 +30,8 @@ class AccueilController extends Controller
             ]
         ];
 
-        require_once('./layout.php');
+        require_once './layout.php';
+
     }
+
 }

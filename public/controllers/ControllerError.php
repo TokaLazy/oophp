@@ -1,21 +1,17 @@
 <?php
 
-require_once('Controller.php');
-require_once(INC.'Session.php');
+use Vendor\Session;
+use controllers\Controller;
 
-class ErrorController extends Controller
-{
-    protected $folder = 'error';
-    protected $title = 'ERRROR';
+class ControllerError extends Controller {
 
-    public function index()
-    {
-        $folder = $this->folder;
-        $page = __FUNCTION__;
-        $title = $this->title;
+    public function index() {
 
-        Session::setAriane(['Accueil' => '/']);
+        Session::setFolder('error');
+        Session::setTitle('ERROR');
 
-        require_once('./layout.php');
+        Session::setBreadcrumb(['Accueil' => '/']);
+
     }
+
 }

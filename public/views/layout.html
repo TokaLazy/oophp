@@ -1,3 +1,9 @@
+<?php
+
+use Vendor\Session;
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -5,7 +11,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><?=$title?></title>
+  <title><?=Session::$title?></title>
 </head>
 
 <body>
@@ -30,11 +36,11 @@
         </div>
       </form> -->
 
-      <?php if (isset($_SESSION['id'])) : ?>
+      <?php if (isset($_SESSION['user'])) : ?>
       <ul class="header__member">
         <li class="header__avatar">
           <a href="/profil/parametres">
-            <img src="<?=IMG?>avatar/<?=$_SESSION['avatar']?>" alt="avatar">
+            <img src="<?=IMG?>avatar/<?=$_SESSION['user']['avatar']?>" alt="avatar">
           </a>
           <div class="header__menu">
             <ul>
@@ -73,7 +79,7 @@
     </div>
 
     <ul class="fildariane">
-      <?php foreach ($_SESSION['ariane'] as $title => $url) : ?>
+      <?php foreach ($_SESSION['breadcrumb'] as $title => $url) : ?>
       <li><a href="<?=$url?>"><?=$title?></a></li>
       <?php endforeach; ?>
     </ul>
@@ -81,11 +87,11 @@
 
   <main class="container">
 
-    <?php if (isset($_SESSION['flash'])) : ?>
+    <?php if (isset($_SESSION['banner'])) : ?>
     <ul class="alert">
 
-      <?php foreach ($_SESSION['flash'] as $color => $flash) : ?>
-        <?php foreach($flash as $alertMessage) : ?>
+      <?php foreach ($_SESSION['banner'] as $color => $banner) : ?>
+        <?php foreach($banner as $alertMessage) : ?>
         <li class="alert__message alert__message--<?=$color?>"><?=$alertMessage?></li>
         <?php endforeach; ?>
       <?php endforeach; ?>
@@ -93,7 +99,7 @@
     </ul>
     <?php endif; ?>
 
-    <?php require_once(VIEW."$folder/$page.html"); ?>
+    <?php require_once VIEW . Session::$folder. "/" . Session::$page . ".html"; ?>
   </main>
 
   <footer class="footer">

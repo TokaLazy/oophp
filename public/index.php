@@ -1,14 +1,21 @@
 <?php
 
-require_once('./config/config.php');
-require_once(INC.'Session.php');
-require_once(INC.'Router.php');
-require_once(INC.'wording.php');
+function __autoload($class) {
 
-$session = new Session();
-$session->autoConnect();
+    $parts = preg_replace('(\\\)', '/', $class);
 
-$router = new Router();
-$router->request();
+    require_once $parts . '.php';
+}
 
-Session::disable('flash');
+require_once './config/config.php';
+require_once './config/messages/wording.php';
+
+use Vendor\Session;
+use Vendor\Router;
+
+Session::start();
+Session::automaticConnection();
+
+Router::request();
+
+Session::unset('banner');

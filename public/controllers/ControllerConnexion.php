@@ -1,22 +1,18 @@
 <?php
 
-require_once('Controller.php');
-require_once(INC.'Session.php');
-require_once(MODEL.'ModelMember.php');
-require_once(INC.'ValidForm.php');
+use Vendor\Session;
+use Vendor\Validator;
+use controllers\Controller;
+use Models\Member;
 
-class ConnexionController extends Controller
-{
-    protected $folder = 'connexion';
-    protected $title = 'Connexion';
+class ControllerConnexion extends Controller {
 
-    public function index()
-    {
-        $folder = $this->folder;
-        $page = __FUNCTION__;
-        $title = $this->title;
+    protected function index() {
 
-        Session::setAriane([
+        Session::setFolder('connexion');
+        Session::setTitle('Connexion');
+
+        Session::setBreadcrumb([
             'Accueil' => '/',
             'Connexion' => '/connexion'
         ]);
@@ -24,41 +20,65 @@ class ConnexionController extends Controller
         $pseudo = '';
 
         if (isset($_POST['submit'])) {
-            ValidForm::init($_POST);
 
-            $pseudo = trim($_POST['pseudo']);
+            if (Session::attrExists('banner')) {
 
-            if (!Session::existAttr('flash')) {
-                $login = Member::init($_POST);
+                Session::unset('banner');
 
-                if (!Member::exist('pseudo', $login->pseudo())) {
-                    Session::setFlash('danger', 'Le compte n\'existe pas.');
-                } else {
-                    $member = Member::connexion('pseudo', $login->pseudo());
-
-                    if (!PASSWORD_VERIFY($login->password(), $member->password())) {
-                        Session::setFlash('danger', 'Mot de passe ou pseudo incorrecte. Veuillez rééssayer');
-                    } else {
-                        if (!empty($member->token())) {
-                            Session::setFlash('warning', 'Vous avez reçu un e-mail pour valider votre inscription ou pour réinitialiser votre mot de passe');
-                        } else {
-                            if (!$member->rank()) {
-                                Session::setFlash('warning', 'Vous avez été banni du site, impossible de vous connecter sur ce site.');
-                            } else {
-                                if (isset($_POST['souvenir'])) {
-                                    $member->generateCookie($member->id());
-                                }
-
-                                Session::setUser($member);
-
-                                redirect();
-                            }
-                        }
-                    }
-                }
             }
+
+            Validator::check($_POST);
+
+            if (Session::attrExists('banner')) {
+
+                return;
+
+            }
+
+            $this->validForm($_POST);
+
         }
 
-        require_once('./layout.php');
     }
+
+    private function validForm(array $post) {
+
+        $member = Member::init($post)->connexion();
+
+        if (!$member) {
+
+            return Session::setBanner('danger', "Le compte n'existe pas.");
+
+        }
+
+        if (!PASSWORD_VERIFY($post['password'], $member->getPassword())) {
+
+            return Session::setBanner('danger', 'Mot de passe ou pseudo incorrecte. Veuillez rééssayer.');
+
+        }
+
+        if (!empty($member->getToken())) {
+
+            return Session::setBanner('warning', 'Vous avez reçu un e-mail pour valider votre inscription ou pour réinitialiser votre mot de passe.');
+
+        }
+
+        if (!$member->getRank()) {
+
+            return Session::setBanner('warning', 'Vous avez été banni du site, impossible de vous connecter sur ce site.');
+
+        }
+
+        if (isset($post['souvenir'])) {
+
+            $member->generateCookie($member->getId());
+
+        }
+
+        Session::setUser($member);
+
+        redirect();
+
+    }
+
 }

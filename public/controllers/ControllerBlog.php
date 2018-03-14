@@ -1,7 +1,7 @@
 <?php
 
 require_once('Controller.php');
-require_once(INC.'Session.php');
+use Vendor\Session;
 require_once(MODEL.'ModelArticle.php');
 require_once(INC.'ValidForm.php');
 

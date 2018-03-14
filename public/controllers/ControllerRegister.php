@@ -1,22 +1,19 @@
 <?php
 
-require_once('Controller.php');
-require_once(INC.'Session.php');
-require_once(MODEL.'ModelMember.php');
-require_once(INC.'ValidForm.php');
+use Vendor\Session;
+use Vendor\Validator;
+use controllers\Controller;
 
-class RegisterController extends Controller
-{
-    protected $folder = 'register';
-    protected $title = 'Inscription';
+use Models\Member;
 
-    public function index()
-    {
-        $folder = $this->folder;
-        $page = __FUNCTION__;
-        $title = $this->title;
+class ControllerRegister extends Controller {
 
-        Session::setAriane([
+    protected function index() {
+
+        Session::setFolder('register');
+        Session::setTitle('Inscription');
+
+        Session::setBreadcrumb([
             'Accueil' => '/',
             'Inscription' => '/inscription'
         ]);
@@ -24,61 +21,88 @@ class RegisterController extends Controller
         $pseudo = $email = '';
 
         if (isset($_POST['submit'])) {
-            $post = array_merge($_POST, $_FILES);
-            ValidForm::init($post);
 
-            $pseudo = trim($post['pseudo']);
-            $email = trim($post['email']);
+            if (Session::attrExists('banner')) {
 
-            if (!Session::existAttr('flash')) {
-                $post['password'] = PASSWORD_HASH($post['password'], PASSWORD_BCRYPT);
+                Session::unset('banner');
 
-                $member = Member::init($post);
-
-                if (Member::exist('pseudo', $member->pseudo())) {
-                    Session::setFlash('warning', 'Votre pseudo est déjà pris, nous sommes désolé.');
-                }
-
-                if (Member::exist('email', $member->email())) {
-                    Session::setFlash('warning', 'Votre adresse e-mail est déjà prise.');
-                }
-
-                if (!Session::existAttr('flash')) {
-                    Member::insert($member);
-
-                    $member->setId(Member::getId($member)['id']);
-
-                    if (PROD) {
-                        $member->sendEmail("Cliquez ou copier le lien dans votre navigateur http://".$_SERVER['SERVER_NAME']."/register/confirm/".$this->id."/".$member->token);
-
-                        Session::setFlash('success', 'Un e-mail de confirmation vous a été envoyé.');
-                    } else {
-                        Session::setFlash('info admin', '<a href="http://'.$_SERVER['SERVER_NAME'].'/register/confirm/'.$member->id().'/'.$member->token().'">cliquer</a>');
-                    }
-
-                    redirect();
-                }
             }
+
+            $data = array_merge($_POST, $_FILES);
+
+            Validator::check($data);
+
+            if (Session::attrExists('banner')) {
+
+                return;
+
+            }
+
+            $data['password'] = PASSWORD_HASH($data['password'], PASSWORD_BCRYPT);
+
+            $member = Member::init($data);
+
+            if ($member->exists('pseudo', $member->getPseudo()) || $member->exists('email', $member->getEmail())) {
+
+                Session::setBanner('warning', 'Pseudo ou adresse e-mail déjà utilisé, nous sommes désolé.');
+
+            }
+
+            if (!Session::attrExists('banner')) {
+
+                $member->insert();
+
+                if (PROD) {
+
+                    $title = 'Inscription sur le Site du Savoir';
+                    $message = "Cliquez ou copier le lien dans votre navigateur http://".$_SERVER['SERVER_NAME']."/register/confirm/".$member->getId()."/".$member->getToken();
+                    $header = 'sitedusavoir.com';
+
+                    mail($member->getEmail(), $title, $message, $header);
+
+                    Session::setBanner('success', 'Un e-mail de confirmation vous a été envoyé.');
+
+                } else {
+
+                    Session::setBanner('info admin', '<a href="http://'.$_SERVER['SERVER_NAME'].'/register/confirm/'.$member->getId().'/'.$member->getToken().'">cliquer</a>');
+
+                }
+
+                $member = $member->connexion();
+                Session::setUser($member);
+
+                redirect();
+            }
+
         }
 
-        require_once('./layout.php');
     }
 
-    public function confirm()
-    {
-        if (Member::exist('id', $_GET['id'])) {
-            if (!Member::check('token', $_GET['token'], $_GET['id'])) {
-                Session::setFlash('danger', "Votre token n'est pas valide.");
+    protected function confirm() {
+
+        $member = Member::init(['id' => $_GET['id']])->connexion();
+
+        if (!$member) {
+
+            Session::setBanner('danger', "Votre compte n'existe pas.");
+
+        } else {
+
+            if ($member->getToken() !== $_GET['token']) {
+
+                Session::setBanner('danger', "Votre token n'est pas valide.");
+
             } else {
-                $member = Member::connexion('id', $_GET['id']);
+
                 $member->setToken(null);
-                $member->update($member);
+                $member->update();
+
                 Session::setUser($member);
             }
-        } else {
-            Session::setFlash('danger', "Votre compte n'existe pas.");
+
         }
 
         redirect();
+
     }
 }
