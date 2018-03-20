@@ -18,7 +18,7 @@ class ProfilController extends Controller
 
         Session::setAriane([
             'Accueil' => '/',
-            'Profil' => '/profil/parametres'
+            'Parametres' => '/profil/parametres'
         ]);
 
         $member = Member::connexion('id', $_SESSION['id']);
@@ -56,10 +56,26 @@ class ProfilController extends Controller
                 $member->setSignature($post['signature']);
 
                 $member->update($member);
-                Session::setUser($member);
+                Session::setUser($member,false);
             }
         }
 
         require_once('./layout.php');
+    }
+
+    public function show()
+    {
+        $folder = $this->folder;
+        $page = __FUNCTION__;
+        $title = $this->title;
+
+        Session::setAriane([
+            'Accueil' => '/',
+            'Profil' => '/profil/show'
+        ]);
+
+        $member = Member::connexion('id', $_SESSION['id']);
+        require_once('./layout.php');
+        
     }
 }

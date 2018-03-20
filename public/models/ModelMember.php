@@ -280,6 +280,17 @@ class Member
         $this->cookie = $value;
     }
 
+    public function setRegistration($value)
+    {
+        $this->registration = $value ;
+    }
+
+    public function setVisite($value)
+    {
+        $this->visite = $value ;
+    }
+
+
 
     /**
      * Getters

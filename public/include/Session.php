@@ -56,13 +56,17 @@ class Session
         }
     }
 
-    public static function setUser(Member $member)
+    public static function setUser(Member $member,$dispWelcome = true)
     {
         $_SESSION['pseudo'] = $member->pseudo();
         $_SESSION['avatar'] = $member->avatar();
         $_SESSION['rank'] = $member->rank();
         $_SESSION['id'] = $member->id();
-        $_SESSION['flash']['success'][] = 'Bienvenue '.$member->pseudo().', vous êtes maintenant connecté !';
+
+        if($dispWelcome )
+            $_SESSION['flash']['success'][] = 'Bienvenue '.$member->pseudo().', vous êtes maintenant connecté !';
+        else
+            $_SESSION['flash']['success'][] = 'Les parametres de '.$member->pseudo().' Ont été mis a jours ';
     }
 
     public function autoConnect()

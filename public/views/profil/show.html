@@ -1,0 +1,42 @@
+<div class="page">
+    <div class="membre">
+		<div class="entetemembre">
+			<div class="avatar">
+		            <img src="../<?=IMG?>avatar/<?=$member->pseudo()?>.png" alt="Pas d avatar"/>
+
+		                                     <?php if($member->rank() == 3)
+		                                        echo'<span class="badge"> Moderateur </span>';
+                                              else if($member->rank() == 4)
+                                              	echo '<span class="badge">Admin </span>';
+                                              	?>
+                                              	
+
+		                                </div>
+
+		                               <div membre-ins">
+		                                      <h4 class="nommembre"><?=$member->pseudo()?></h4>
+		                                      <p>
+		                                          Membre depuis le <?=$member->registration()?></br>
+		                                          Email : <a href="mailto:'<?=$member->email()?>"><?=$member->email()?></a>
+		                                      </p>
+		                                      <span class="membre-edit">
+		                                             <a href="/profil/parametres">Editer </a>
+		                                      </span>
+		                                </div>
+	                            </div>
+
+	                          <div class="infosmembre">
+	                                <ul>
+	                                    <li> <span class="libele">Site Web </span>       :  <span class="infos-content"><a href="<?=htmlspecialchars($member->website())?>"><?=htmlspecialchars($member->website())?></a></span>  </li>
+	                                    <li> <span class="libele"> Localisation </span>  :  <span class="infos-content"> <?=$member->localisation()?></span> </li>
+	                                    <li> <span class="libele">Derniere Visite </span>:  <span class="infos-content"> <?=$member->visite()?></span> </li>
+	                                </ul>
+	                          </div>
+
+	                          <div class="signature">
+	                               
+	                                  <?=$member->signature()?>
+	                               
+	                          </div>
+                        </div>     
+            </div>
